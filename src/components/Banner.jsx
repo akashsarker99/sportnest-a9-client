@@ -33,13 +33,13 @@ const Banner = () => {
 
             <div className="flex flex-wrap items-center gap-4 mt-8 justify-center sm:justify-start">
               <Link href={"/all-facilities"}>
-                <button className="px-6 py-3 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 text-white font-semibold flex items-center gap-2 transition duration-300 shadow-lg hover:shadow-[#005353] hover:translate-x-1">
+                <button className="px-6 py-3 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 text-white font-semibold flex items-center gap-2 transition duration-300 shadow-lg hover:shadow-[#005353] hover:translate-x-1 cursor-pointer">
                   Explore Facilities
                   <FaArrowRight />
                 </button>
               </Link>
 
-              <button className="px-6 py-3 rounded-xl border border-[#24B1B1] text-white hover:bg-[#24B1B1] hover:text-white font-semibold transition duration-300">
+              <button className="px-6 py-3 rounded-xl border border-[#24B1B1] text-white hover:bg-[#24B1B1] hover:text-white font-semibold transition duration-300 cursor-pointer">
                 Learn More
               </button>
             </div>

@@ -1,12 +1,23 @@
+'use client'
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { FaArrowRight, FaClock, FaLocationDot, FaUsers } from 'react-icons/fa6';
+import { motion } from "motion/react"
 
 const FeatureCard = ({facility}) => {
      const {_id, name, facility_type, image, location, price_per_hour, capacity, available_slots } = facility;
     return (
-        <div className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[#24B1B1] transition duration-300 hover:shadow-xl flex flex-col h-full shadow">
+        <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{
+        y: -7,
+        scale: 1.01,
+      }}
+      transition={{
+        duration: 0.3,
+      }}className="group bg-white rounded-2xl overflow-hidden border border-gray-200 hover:border-[#24B1B1]  hover:shadow-xl flex flex-col h-full shadow">
       <div className="relative overflow-hidden">
         <Image
           src={image}
@@ -53,15 +64,15 @@ const FeatureCard = ({facility}) => {
         </div>
 
         <div className="mt-auto pt-6 flex justify-end">
-          <Link href={`/facility/${_id}`}>
-            <button className="px-6 py-3 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold transition duration-300 shadow-md hover:scale-103 flex items-center gap-2">
+          <Link href={`/all-facilities/${_id}`}>
+            <button className="py-5 rounded-2xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold transition duration-300 shadow-md hover:scale-103 flex items-center gap-2 btn">
               Book Now
               <FaArrowRight></FaArrowRight>
             </button>
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
     );
 };
 

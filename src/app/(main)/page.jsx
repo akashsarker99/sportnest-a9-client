@@ -1,5 +1,6 @@
 import Banner from '@/components/Banner';
 import FeaturedFacilities from '@/components/FeaturedFacilities';
+import StepsSection from '@/components/StepsSection';
 import React from 'react';
 
 const HomePage = () => {
@@ -7,6 +8,7 @@ const HomePage = () => {
         <div>
             <Banner></Banner>
             <FeaturedFacilities></FeaturedFacilities>
+            <StepsSection></StepsSection>
         </div>
     );
 };
