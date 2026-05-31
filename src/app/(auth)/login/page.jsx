@@ -3,13 +3,27 @@ import Link from 'next/link';
 import React from 'react';
 import { Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
+import { toast } from 'react-toastify';
+import { redirect } from 'next/navigation';
+import { authClient } from '@/lib/auth-client';
 const LoginPage = () => {
-    const handleLogin = (e) =>{
+    const handleLogin = async (e) =>{
          e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData);
-    console.log(data);
+    const user = Object.fromEntries(formData);
+   const { data, error } = await authClient.signIn.email({
+      email: user.email,
+      password: user.password,
+    });
+    if (data) {
+              toast.success("Login Successful");
+              redirect('/')
     }
+        if (error) {
+            toast.error(error.message);
+          }
+    }
+  
     return (
         <div className="min-h-screen flex items-center justify-center px-6 py-16">
       <div className="w-full max-w-md bg-white rounded-3xl shadow-xl border border-gray-100 p-8">

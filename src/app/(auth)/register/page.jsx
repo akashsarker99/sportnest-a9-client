@@ -3,12 +3,27 @@ import React from 'react';
 import { Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
+import { authClient } from '@/lib/auth-client';
+import { toast } from 'react-toastify';
+import { redirect } from 'next/navigation';
 const RegisterPage = () => {
-     const handleRegister = (e) =>{
+     const handleRegister = async (e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries())
-        console.log(data)
+        const user = Object.fromEntries(formData.entries())
+        const {data, error} = await authClient.signUp.email({
+           email: user.email,
+           password: user.password,
+           name: user.name,
+           image: user.image,
+   })
+   if(data){
+          toast.success('Registration Successful');
+           redirect('login')
+      } 
+    if(error){
+      toast.error(`${error.message}`)
+    }
      }
     return (
         <div>
