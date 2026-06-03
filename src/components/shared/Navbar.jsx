@@ -1,8 +1,15 @@
+'use client'
+import { authClient } from "@/lib/auth-client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 const Navbar = () => {
+  const {data: session} = authClient.useSession()
+  const user = session?.user;
+  const handleLogout = async () =>{
+    return await authClient.signOut();
+  }
   return (
     <div>
       <div className="bg-white shadow-md sticky top-0 z-50">
@@ -75,21 +82,23 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className="navbar-end gap-3">
+         <div className="navbar-end gap-3">
+             {
+              user? <div className="flex items-center gap-2.5">
+                   <h2 className="font-semibold">Hi, <span className="bg-linear-to-l from-[#24B1B1] to-[#007979] bg-clip-text text-transparent font-bold ">{user?.name}</span></h2>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
+                className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full border-2 border-[#24B1B1] overflow-hidden">
-                  <Image src={"/user.png"} alt="user" width={40} height={40} />
+                  <Image src={user?.image || "/user.png"} alt={user?.name || "User"} width={40} height={40}></Image>
                 </div>
               </div>
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-1 p-3 shadow bg-white rounded-box w-56 text-[#0F172A] space-y-2"
+                className="menu menu-sm dropdown-content mt-3 z-1 p-3 shadow bg-white rounded-box w-56 text-[#0F172A] space-y-2 font-semibold"
               >
                 <li>
                   <Link href={"/mybookings"}>My Bookings</Link>
@@ -104,19 +113,22 @@ const Navbar = () => {
                 </li>
 
                 <li className="pt-2">
-                  <button className="btn bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 border-none text-white">
+                  <button onClick={handleLogout} className="btn bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 border-none text-white">
                     Logout <MdOutlineLogout />
                   </button>
                 </li>
               </ul>
             </div>
-
-            <Link href={"/login"}>
+          </div> :
+            <div>
+               <Link href={"/login"} >
               <button className="btn bg-linear-to-l from-[#24B1B1] to-[#007979] text-white rounded-xl hover:opacity-90 border-none ease-in-out transition-all duration-300 hover:scale-102">
                 Login <MdOutlineLogin />
               </button>
             </Link>
-          </div>
+            </div>
+            }
+         </div>
         </div>
       </div>
     </div>

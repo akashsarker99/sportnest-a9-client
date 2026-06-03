@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
 import { redirect } from 'next/navigation';
+import { handleGoogleLogin } from '../login/page';
 const RegisterPage = () => {
      const handleRegister = async (e) =>{
         e.preventDefault();
@@ -64,7 +65,7 @@ const RegisterPage = () => {
             <FieldError />
           </TextField>
 
-          <TextField isRequired name="photo">
+          <TextField isRequired name="image">
             <Label>Photo URL</Label>
             <Input placeholder="Enter your photo URL" />
          <FieldError />
@@ -102,13 +103,13 @@ const RegisterPage = () => {
 
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 text-white font-semibold text-base">
+            className="w-full h-12 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 text-white font-semibold text-base btn">
             Register
           </Button>
         </Form>
 
         <div className="divider text-gray-400 my-8">OR</div>
-        <button className="w-full py-3 rounded-xl border border-gray-200 hover:border-[#24B1B1] hover:bg-cyan-50 text-slate-600 font-medium transition duration-300 flex items-center justify-center gap-3">
+        <button onClick={handleGoogleLogin} className="w-full btn rounded-xl border border-gray-200 hover:border-[#24B1B1] hover:bg-cyan-50 text-slate-600 font-medium transition duration-300 flex items-center justify-center gap-3 cursor-pointer">
           <FcGoogle className="text-2xl" />
           Continue with Google
         </button>

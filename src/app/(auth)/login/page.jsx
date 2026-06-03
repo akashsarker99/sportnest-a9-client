@@ -6,6 +6,14 @@ import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
 import { redirect } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
+
+export const handleGoogleLogin = async () =>{
+  await authClient.signIn.social({
+    provider: "google",
+  });
+}
+
+
 const LoginPage = () => {
     const handleLogin = async (e) =>{
          e.preventDefault();
@@ -89,7 +97,7 @@ const LoginPage = () => {
 
           <Button
             type="submit"
-            className="w-full h-12 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 text-white font-semibold text-base"
+            className="w-full btn h-12 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 text-white font-semibold text-base"
           >
             Login
           </Button>
@@ -97,7 +105,7 @@ const LoginPage = () => {
 
         <div className="divider text-gray-400 my-8">OR</div>
 
-        <button className="w-full py-3 rounded-xl border border-gray-200 hover:border-[#24B1B1] hover:bg-cyan-50 text-slate-600 font-medium transition duration-300 flex items-center justify-center gap-3">
+        <button onClick={handleGoogleLogin} className="w-full btn rounded-xl border border-gray-200 hover:border-[#24B1B1] hover:bg-cyan-50 text-slate-600 font-medium transition duration-300 flex items-center justify-center gap-3">
           <FcGoogle className="text-2xl"></FcGoogle>
           Continue with Google
         </button>
