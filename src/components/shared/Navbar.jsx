@@ -7,6 +7,7 @@ import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 const Navbar = () => {
   const {data: session} = authClient.useSession()
   const user = session?.user;
+  console.log(user)
   const handleLogout = async () =>{
     return await authClient.signOut();
   }

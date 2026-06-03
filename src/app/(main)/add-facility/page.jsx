@@ -1,19 +1,33 @@
 "use client"
+import { authClient } from '@/lib/auth-client';
 import { Button, Form, Input, Label, TextField } from '@heroui/react';
+import { redirect } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const AddFacilityPage = () => {
+  const { data: session } = authClient.useSession();
+const user = session?.user;
     const onSubmit = async (e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
-        const data = Object.fromEntries(formData.entries());
+        const fieldData = Object.fromEntries(formData.entries());
+
+        const facility= {
+          ...fieldData,
+           owner_email: user?.email,
+        }
+        facility.available_slots = facility.available_slots.split(",").map((slot) => slot.trim());
        const res = await fetch('http://localhost:5000/facility', {
         method: "POST",
         headers: {
           'content-type': 'application/json'
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(facility)
        })
+       const data = await res.json();
+       toast.success("Facility added successfully")
+       redirect('/all-facilities')
     }
     return (
         <div>

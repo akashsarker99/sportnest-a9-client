@@ -4,8 +4,8 @@ import React from 'react';
 import { Button, Description, FieldError, Form, Input, Label, TextField} from "@heroui/react";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from 'react-toastify';
-import { redirect } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 export const handleGoogleLogin = async () =>{
   await authClient.signIn.social({
@@ -15,6 +15,7 @@ export const handleGoogleLogin = async () =>{
 
 
 const LoginPage = () => {
+  const router = useRouter()
     const handleLogin = async (e) =>{
          e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -23,9 +24,10 @@ const LoginPage = () => {
       email: user.email,
       password: user.password,
     });
+    console.log(data, error)
     if (data) {
-              toast.success("Login Successful");
-              redirect('/')
+            toast.success("Login Successful");
+            router.push("/")
     }
         if (error) {
             toast.error(error.message);

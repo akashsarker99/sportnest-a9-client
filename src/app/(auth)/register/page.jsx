@@ -5,9 +5,9 @@ import { FcGoogle } from 'react-icons/fc';
 import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
-import { redirect } from 'next/navigation';
 import { handleGoogleLogin } from '../login/page';
 const RegisterPage = () => {
+  const router = useRouter()
      const handleRegister = async (e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -20,7 +20,7 @@ const RegisterPage = () => {
    })
    if(data){
           toast.success('Registration Successful');
-           redirect('login')
+          router.push('/login')
       } 
     if(error){
       toast.error(`${error.message}`)
