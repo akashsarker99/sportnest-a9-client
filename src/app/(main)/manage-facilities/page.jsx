@@ -1,3 +1,4 @@
+import EditFacilityModal from '@/components/EditFacilityModal';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import Image from 'next/image';
@@ -17,17 +18,23 @@ const ManageFacilitiesPage = async () => {
         <div>
              <div className="max-w-7xl mx-auto px-6 py-12">
       <div className="text-center">
-
         <h1 className="text-4xl font-bold text-[#0F172A]">Manage
           <span className="bg-linear-to-l from-[#24B1B1] to-[#007979] bg-clip-text text-transparent">{" "}Facilities</span>
         </h1>
-
         <p className="text-gray-500 mt-4">Update or remove your facilities.</p>
       </div>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
 
-        {facilities.map((facility) => (
+        {facilities.length === 0 ? (
+             <div className="col-span-full text-center py-20">
+             <h2 className="text-3xl font-bold text-slate-700">No Facilities Available</h2>
+            <p className="text-gray-500 mt-3">You haven't added any facilities yet.</p>
+
+    <Link href="/add-facility"><button className="btn mt-6 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold">Add Facility</button>
+    </Link>
+  </div>) :
+        facilities.map((facility) => (
          <div key={facility._id}
               className="group bg-white rounded-3xl border border-gray-200 overflow-hidden shadow-md hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
   <div className="relative overflow-hidden">
@@ -73,7 +80,7 @@ const ManageFacilitiesPage = async () => {
     </div>
 
     <div className="mt-6 flex justify-end gap-3">
-        <button className="btn rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold hover:scale-102 transition">Update</button>
+      <EditFacilityModal className="btn rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold hover:scale-102 transition" facility={facility}></EditFacilityModal>
       <button className="btn rounded-xl border bg-red-500 text-white font-semibold transition hover:scale-102">Delete</button>
 
     </div>
