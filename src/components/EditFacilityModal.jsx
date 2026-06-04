@@ -37,7 +37,7 @@ updatedFacility.available_slots = updatedFacility.available_slots.split(",").map
     <Modal>
       <Button
         variant="solid"
-        className="bg-linear-to-l from-[#24B1B1] to-[#007979] text-white">
+       className="bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold hover:scale-102 transition">
         <BiEdit />
         Update
       </Button>

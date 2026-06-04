@@ -1,3 +1,4 @@
+import DeleteFacilityAlert from '@/components/DeleteFacilityAlert';
 import EditFacilityModal from '@/components/EditFacilityModal';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
@@ -80,9 +81,8 @@ const ManageFacilitiesPage = async () => {
     </div>
 
     <div className="mt-6 flex justify-end gap-3">
-      <EditFacilityModal className="btn rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold hover:scale-102 transition" facility={facility}></EditFacilityModal>
-      <button className="btn rounded-xl border bg-red-500 text-white font-semibold transition hover:scale-102">Delete</button>
-
+      <EditFacilityModal facility={facility}></EditFacilityModal>
+      <DeleteFacilityAlert facility={facility}></DeleteFacilityAlert>
     </div>
 
   </div>
