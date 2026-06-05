@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { authClient } from '@/lib/auth-client';
 import { toast } from 'react-toastify';
 import { handleGoogleLogin } from '../login/page';
+import { useRouter } from 'next/navigation';
 const RegisterPage = () => {
   const router = useRouter()
      const handleRegister = async (e) =>{

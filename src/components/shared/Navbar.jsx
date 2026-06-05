@@ -103,7 +103,7 @@ const Navbar = () => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-1 p-3 shadow bg-white rounded-box w-56 text-[#0F172A] space-y-2 font-semibold"
+                className="menu menu-sm dropdown-content mt-5 z-1 p-4 shadow bg-white rounded-2xl w-56 text-[#0F172A] space-y-2 font-semibold"
               >
                 <li>
                   <Link href={"/mybookings"}>My Bookings</Link>
@@ -118,7 +118,7 @@ const Navbar = () => {
                 </li>
 
                 <li className="pt-2">
-                  <button onClick={handleLogout} className="btn bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 border-none text-white">
+                  <button onClick={handleLogout} className="btn rounded-2xl bg-linear-to-l from-[#24B1B1] to-[#007979] hover:opacity-90 border-none text-white">
                     Logout <MdOutlineLogout />
                   </button>
                 </li>

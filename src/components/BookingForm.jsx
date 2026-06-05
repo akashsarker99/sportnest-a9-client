@@ -1,17 +1,22 @@
 'use client'
+import { authClient } from '@/lib/auth-client';
 import { Form, Input, Label, TextField, Button, } from '@heroui/react';
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 const BookingForm = ({facility}) => {
+      const {data: session} = authClient.useSession()
+      const user = session?.user;
     const {_id, name, facility_type, image, price_per_hour} = facility
     const [hours, setHours] = useState(1);
       const totalPrice = hours * price_per_hour;
 
-      const handleBooking = (e) =>{
+      const handleBooking = async (e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget)
        const bookingData = {
+        userId: user?.id,
+        owner_email: user?.email,
         facilityId: _id,
         facilityName: name,
         facilityType: facility_type,
@@ -21,8 +26,15 @@ const BookingForm = ({facility}) => {
         hours: Number(formData.get("hours")),
         pricePerHour: price_per_hour,
         totalPrice,
+        status: "Pending"
        }
-        console.log(bookingData)
+       const res = await fetch("http://localhost:5000/booking",{
+        method: "POST",
+        headers:{
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(bookingData),
+       })
         toast.success("Booking Successfull !")
       }
     return (
