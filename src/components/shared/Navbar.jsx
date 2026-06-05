@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { MdOutlineLogin, MdOutlineLogout } from "react-icons/md";
 import { toast } from "react-toastify";
+import Navlink from "./Navlink";
 const Navbar = () => {
   const router = useRouter();
   const {data: session} = authClient.useSession()
@@ -39,58 +40,52 @@ const Navbar = () => {
           </div>
 
           <div className="navbar-center hidden lg:flex">
-            <ul className="menu menu-horizontal px-1 gap-4 text-[16px] font-medium">
+            <ul className="flex gap-7 text-[16px] font-medium">
               <li>
-                <Link
-                  href={"/"}
-                  className="bg-transparent hover:text-[#24B1B1]"
-                >
+                <Navlink
+                  href={"/"}>
                   Home
-                </Link>
+                </Navlink>
               </li>
 
               <li>
-                <Link
-                  href={"/all-facilities"}
-                  className="bg-transparent hover:text-[#24B1B1]"
-                >
+                <Navlink
+                  href={"/all-facilities"}>
                   All Facilities
-                </Link>
+                </Navlink>
               </li>
 
-              <li>
-                <Link
-                  href={"/mybookings"}
-                  className="bg-transparent hover:text-[#24B1B1]"
-                >
+               {
+                user && <div className="flex gap-7">
+                   <li>
+                <Navlink
+                  href={"/mybookings"}>
                   My Bookings
-                </Link>
+                </Navlink>
               </li>
 
               <li>
-                <Link
-                  href={"/add-facility"}
-                  className="bg-transparent hover:text-[#24B1B1]"
-                >
+                <Navlink
+                  href={"/add-facility"}>
                   Add Facility
-                </Link>
+                </Navlink>
               </li>
 
               <li>
-                <Link
-                  href={"/manage-facilities"}
-                  className="bg-transparent hover:text-[#24B1B1]"
-                >
+                <Navlink
+                  href={"/manage-facilities"}>
                   Manage My Facilities
-                </Link>
+                </Navlink>
               </li>
+                </div>
+               }  
             </ul>
           </div>
 
          <div className="navbar-end gap-3">
              {
-              user? <div className="flex items-center gap-2.5">
-                   <h2 className="font-semibold">Hi, <span className="bg-linear-to-l from-[#24B1B1] to-[#007979] bg-clip-text text-transparent font-bold ">{user?.name}</span></h2>
+              user? <div className="flex items-center sm:gap-2.5">
+                   <h2 className="sm:font-semibold">Hi, <span className="bg-linear-to-l from-[#24B1B1] to-[#007979] bg-clip-text text-transparent font-semibold sm:font-bold ">{user?.name}</span></h2>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}

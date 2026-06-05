@@ -19,7 +19,7 @@ const ManageFacilitiesPage = async () => {
         return <div className="text-center py-20">
              <h2 className="text-3xl font-bold text-slate-700">No Facilities Available</h2>
             <p className="text-gray-500 mt-3">You haven't added any facilities yet.</p>
-    <Link href="/add-facility"><button className="btn mt-6 rounded-xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold transition duration-300 hover:-translate-y-1">Add Facility</button>
+    <Link href="/add-facility"><button className="btn mt-6 rounded-2xl bg-linear-to-l from-[#24B1B1] to-[#007979] text-white font-semibold transition duration-300 hover:-translate-y-1">Add Facility</button>
     </Link>
   </div>
       }
