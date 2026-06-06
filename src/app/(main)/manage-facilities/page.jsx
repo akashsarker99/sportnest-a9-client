@@ -11,8 +11,14 @@ const ManageFacilitiesPage = async () => {
     headers: await headers(),
 })
     const user = session?.user;
-    console.log(user)
-      const res = await fetch(`http://localhost:5000/my-facilities/${user?.email}`);
+    const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+      const res = await fetch(`http://localhost:5000/my-facilities/${user?.email}`,{
+         headers:{
+        authorization: `Bearer ${token}`
+        }
+      });
       const facilities = await res.json();
 
       if(facilities.length === 0) {

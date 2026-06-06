@@ -3,16 +3,19 @@ import { TrashBin } from "@gravity-ui/icons";
 import { AlertDialog, Button } from "@heroui/react";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const BookingCancelAlert = ({ booking }) => {
   const router = useRouter();
   const { _id, facilityName } = booking;
   const handleCancelBooking = async () => {
 
+    const {data: tokenData} = await authClient.token();
     const res = await fetch(`http://localhost:5000/booking/${_id}`,{
         method: "DELETE",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`
         },
       }
     );

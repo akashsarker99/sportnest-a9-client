@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import {Button, FieldError, Input, Label,ListBox,Modal,Select,Surface,TextArea,TextField} from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { BiEdit } from "react-icons/bi";
@@ -18,10 +19,12 @@ const EditFacilityModal = ({ facility }) => {
          capacity: Number(fieldData.capacity),
 };
 updatedFacility.available_slots = updatedFacility.available_slots.split(",").map((slot) => slot.trim());
+const {data: tokenData} = await authClient.token();
     const res = await fetch(`http://localhost:5000/facility/${_id}`,{
         method: "PATCH",
         headers: {
           "content-type": "application/json",
+          authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify(updatedFacility),
       }

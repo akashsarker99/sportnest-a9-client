@@ -1,12 +1,21 @@
 import BookingForm from '@/components/BookingForm';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 import Image from 'next/image';
 import React from 'react';
 
 const FacilityDetailsPage = async ({params}) => {
     const {id} = await params;
-    const res = await fetch(`http://localhost:5000/facility/${id}`);
+    const {token} = await auth.api.getToken({
+      headers: await headers()
+    })
+    console.log(token)
+    const res = await fetch(`http://localhost:5000/facility/${id}`,{
+      headers: {
+        authorization: `Bearer ${token}`
+      }
+    });
     const facility = await res.json()
-    console.log(id)
     return (
         <div>
              <div className="max-w-7xl mx-auto px-6 py-12">

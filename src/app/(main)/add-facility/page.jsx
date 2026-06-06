@@ -8,6 +8,7 @@ import { toast } from 'react-toastify';
 const AddFacilityPage = () => {
   const { data: session } = authClient.useSession();
 const user = session?.user;
+
     const onSubmit = async (e) =>{
         e.preventDefault();
         const formData = new FormData(e.currentTarget);
@@ -18,10 +19,13 @@ const user = session?.user;
            owner_email: user?.email,
         }
         facility.available_slots = facility.available_slots.split(",").map((slot) => slot.trim());
+
+        const {data: tokenData} = await authClient.token()
        const res = await fetch('http://localhost:5000/facility', {
         method: "POST",
         headers: {
-          'content-type': 'application/json'
+          'content-type': 'application/json',
+          authorization: `Bearer ${tokenData?.token}`
         },
         body: JSON.stringify(facility)
        })
