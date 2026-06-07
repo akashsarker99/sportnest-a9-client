@@ -20,7 +20,7 @@ const EditFacilityModal = ({ facility }) => {
 };
 updatedFacility.available_slots = updatedFacility.available_slots.split(",").map((slot) => slot.trim());
 const {data: tokenData} = await authClient.token();
-    const res = await fetch(`http://localhost:5000/facility/${_id}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility/${_id}`,{
         method: "PATCH",
         headers: {
           "content-type": "application/json",

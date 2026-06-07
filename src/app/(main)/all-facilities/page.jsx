@@ -1,9 +1,19 @@
+'use client'
+import FacilityFilter from '@/components/FacilityFilter';
 import FeatureCard from '@/components/shared/FeatureCard';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const AllFacilitiesPage = async () => {
-     const res = await fetch("http://localhost:5000/facility");
-  const facilities = await res.json();
+const AllFacilitiesPage = () => {
+   const [facilities, setFacilities] = useState([]);
+  const fetchFacilities = async (search = "",sport = "") => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility?search=${search}&sport=${sport}`)
+    const data = await res.json();
+    setFacilities(data);
+  }
+    useEffect(() => {
+       fetchFacilities();
+      }, []);
+ 
     return (
         <div>
              <div className="max-w-7xl mx-auto px-6 py-10">
@@ -15,6 +25,10 @@ const AllFacilitiesPage = async () => {
           From football turfs to swimming pools, find the perfect place to play,
           compete, and enjoy your favorite sports.
         </p>
+      </div>
+
+      <div>
+        <FacilityFilter fetchFacilities={fetchFacilities}></FacilityFilter>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">

@@ -10,7 +10,7 @@ const DeleteFacilityAlert = ({ facility }) => {
   const { _id, name } = facility;
   const handleDelete = async () => {
     const {data: tokenData} = await authClient.token()
-    const res = await fetch(`http://localhost:5000/facility/${_id}`,{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/facility/${_id}`,{
         method: "DELETE",
          headers: {
         "content-type": "application/json",
