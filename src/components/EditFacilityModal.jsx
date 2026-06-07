@@ -1,6 +1,6 @@
 "use client";
 import { authClient } from "@/lib/auth-client";
-import {Button, FieldError, Input, Label,ListBox,Modal,Select,Surface,TextArea,TextField} from "@heroui/react";
+import {Button, FieldError, Input, Label,Modal,Surface,TextArea,TextField} from "@heroui/react";
 import { useRouter } from "next/navigation";
 import { BiEdit } from "react-icons/bi";
 import { toast } from "react-toastify";
@@ -71,68 +71,41 @@ const {data: tokenData} = await authClient.token();
                       isRequired
                     >
                       <Label>Facility Name</Label>
-                      <Input />
+                      <Input  className="w-full rounded-xl"/>
                       <FieldError />
                     </TextField>
 
-                    <Select
-                      defaultValue={facility_type}
-                      name="facility_type"
-                      isRequired
-                    >
-                      <Label>Facility Type</Label>
+                    <div>
+  <TextField isRequired>
+    <Label>Facility Type</Label>
 
-                      <Select.Trigger>
-                        <Select.Value />
-                        <Select.Indicator />
-                      </Select.Trigger>
+    <select
+      name="facility_type"
+      defaultValue={facility_type}
+      className="w-full h-11 px-3 rounded-xl border border-default-200 bg-transparent outline-none focus:border-[#24B1B1]"
+    >
+      <option value="Football">Football</option>
+      <option value="Badminton">Badminton</option>
+      <option value="Basketball">Basketball</option>
+      <option value="Swimming">Swimming</option>
+      <option value="Cricket">Cricket</option>
+      <option value="Tennis">Tennis</option>
+      <option value="Bowling">Bowling</option>
+      <option value="Volleyball">Volleyball</option>
+      <option value="Gym">Gym</option>
+      <option value="Athletics">Athletics</option>
+    </select>
 
-                      <Select.Popover>
-                        <ListBox>
-
-                          <ListBox.Item id="Football">
-                            Football
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Badminton">
-                            Badminton
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Basketball">
-                            Basketball
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Swimming">
-                            Swimming
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Cricket">
-                            Cricket
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Tennis">
-                            Tennis
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Bowling">
-                            Bowling
-                          </ListBox.Item>
-
-                          <ListBox.Item id="Volleyball">
-                            Volleyball
-                          </ListBox.Item>
-
-                        </ListBox>
-                      </Select.Popover>
-                    </Select>
-
+    <FieldError />
+  </TextField>
+</div>
                     <TextField
                       defaultValue={location}
                       name="location"
                       isRequired
                     >
                       <Label>Location</Label>
-                      <Input />
+                      <Input  className="w-full rounded-xl"/>
                       <FieldError />
                     </TextField>
 
@@ -143,7 +116,7 @@ const {data: tokenData} = await authClient.token();
                       isRequired
                     >
                       <Label>Price Per Hour</Label>
-                      <Input />
+                      <Input  className="w-full rounded-xl"/>
                       <FieldError />
                     </TextField>
 
@@ -154,7 +127,7 @@ const {data: tokenData} = await authClient.token();
                       isRequired
                     >
                       <Label>Capacity</Label>
-                      <Input />
+                      <Input  className="w-full rounded-xl"/>
                       <FieldError />
                     </TextField>
 
@@ -165,7 +138,7 @@ const {data: tokenData} = await authClient.token();
                         isRequired
                       >
                         <Label>Image URL</Label>
-                        <Input />
+                        <Input  className="w-full rounded-xl"/>
                         <FieldError />
                       </TextField>
                     </div>
@@ -177,7 +150,7 @@ const {data: tokenData} = await authClient.token();
                         isRequired
                       >
                         <Label>Available Slots</Label>
-                        <Input placeholder="8AM - 10AM, 4PM - 6PM" />
+                        <Input className="w-full rounded-xl" placeholder="8AM - 10AM, 4PM - 6PM" />
                         <FieldError />
                       </TextField>
                     </div>

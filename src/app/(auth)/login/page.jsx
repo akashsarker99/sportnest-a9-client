@@ -61,7 +61,7 @@ const LoginPage = () => {
             }}
           >
             <Label>Email Address</Label>
-            <Input className={'w-full'} placeholder="Enter your email address" />
+            <Input className={'w-full rounded-xl'} placeholder="Enter your email address" />
 
             <FieldError />
           </TextField>
@@ -88,7 +88,7 @@ const LoginPage = () => {
             }}
           >
             <Label>Password</Label>
-            <Input className={'w-full'} placeholder="Enter your password" />
+            <Input className={'w-full rounded-xl'} placeholder="Enter your password" />
             <Description>
               Must contain at least 6 characters, one uppercase and one
               lowercase letter.

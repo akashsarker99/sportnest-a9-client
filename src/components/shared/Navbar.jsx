@@ -55,8 +55,6 @@ const Navbar = () => {
                 </Navlink>
               </li>
 
-               {
-                user && <div className="flex gap-7">
                    <li>
                 <Navlink
                   href={"/mybookings"}>
@@ -77,8 +75,6 @@ const Navbar = () => {
                   Manage My Facilities
                 </Navlink>
               </li>
-                </div>
-               }  
             </ul>
           </div>
 

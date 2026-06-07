@@ -47,6 +47,7 @@ const user = session?.user;
           <TextField isRequired>
             <Label>Facility Name</Label>
             <Input
+            className="w-full rounded-xl"
               name="name"
               placeholder="Elite Football Turf"/>
           </TextField>
@@ -54,6 +55,7 @@ const user = session?.user;
           <TextField isRequired>
             <Label>Facility Type</Label>
             <Input
+            className="w-full rounded-xl"
               name="facility_type"
               placeholder="Football"/>
           </TextField>
@@ -62,6 +64,7 @@ const user = session?.user;
             <Label>Image URL</Label>
 
             <Input
+            className="w-full rounded-xl"
               name="image"
               placeholder="https://example.com/image.jpg"/>
           </TextField>
@@ -70,6 +73,7 @@ const user = session?.user;
             <Label>Location</Label>
 
             <Input
+            className="w-full rounded-xl"
               name="location"
               placeholder="Dhaka, Bangladesh"/>
           </TextField>
@@ -80,6 +84,7 @@ const user = session?.user;
               <Label>Price Per Hour</Label>
 
               <Input
+              className="w-full rounded-xl"
                 name="price_per_hour"
                 type="number"
                 placeholder="1200"/>
@@ -89,6 +94,7 @@ const user = session?.user;
               <Label>Capacity</Label>
 
               <Input
+              className="w-full rounded-xl"
                 name="capacity"
                 type="number"
                 placeholder="14"/>
@@ -100,6 +106,7 @@ const user = session?.user;
             <Label>Available Slots</Label>
 
             <Input
+            className="w-full rounded-xl"
               name="available_slots"
               placeholder="8AM - 10AM, 4PM - 6PM"/>
           </TextField>
@@ -108,6 +115,7 @@ const user = session?.user;
             <Label>Description</Label>
 
             <Input
+            className="w-full rounded-xl"
               name="description"
               placeholder="Premium artificial grass football turf with floodlights."/>
           </TextField>
