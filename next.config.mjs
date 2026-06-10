@@ -1,20 +1,18 @@
-/** @type {import('next').NextConfig} */
+/** @type {import('next').Next} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
+  output: 'standalone',
+  experimental: {
+    serverComponentsExternalPackages: ['@better-auth/kysely-adapter', 'kysely'],
+  },
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: '**',
         port: '',
-      
-      },
+      }
     ],
   },
-  experimental: {
-serverComponentsExternalPackages: ['@better-auth/kysely-adapter'],
-},
 };
 
 export default nextConfig;
